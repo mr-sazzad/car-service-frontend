@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%;
+}
+
+.header-bg {
+  background-image: url("/assets/bannerCar.webp");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  backdrop-filter: blur(2px);
+  background-size: contain;
+}
+
+select option {
+  background: #ffffff;
+  color: #000000;
+  padding: 8px;
+}
+
+select option:hover {
+  background: #f1f1f1;
+}
+
+.login-bg {
+  background-image: url("/assets/login-bg.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  backdrop-filter: blur(2px);
+  background-size: cover;
+}
+
+.sign-up-bg {
+  background-image: url("/assets/signup-bg.avif");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  backdrop-filter: blur(100px);
+  background-size: cover;
+}
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -10px;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 10px;
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div {
+  margin-bottom: 10px;
+  border: 1px solid lightgray !important;
+  border-radius: 5px !important;
+}
+
+.event-bg {
+  background-image: url("/assets/car-workshop.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  backdrop-filter: blur(100px);
+  background-size: cover;
+}

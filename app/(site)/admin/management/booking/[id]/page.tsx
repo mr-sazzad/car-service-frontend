@@ -9,7 +9,7 @@ import {
 import { useGetSingleServiceQuery } from "@/app/redux/api/services/serviceApi";
 import { useGetSingleUserQuery } from "@/app/redux/api/userApi";
 import { hideEmail } from "@/app/utils/emailHide";
-import { Button, DatePicker, DatePickerProps, Modal, message } from "antd";
+import { DatePicker, DatePickerProps, Modal, message } from "antd";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -204,23 +204,46 @@ const ViewBooking = () => {
             </div>
           </div>
           <div className="text-center font-medium text-md mb-5 text-gray-600">
-             <span className="bg-gray-700 px-5 py-2 rounded-full text-white tooltip hover:bg-gray-800 transition" data-tip="service-status">Service Status: {cartService?.status}</span>
+            <span
+              className="bg-gray-700 px-5 py-2 rounded-full text-white tooltip hover:bg-gray-800 transition"
+              data-tip="service-status"
+            >
+              Service Status: {cartService?.status}
+            </span>
           </div>
           <div className="flex justify-center items-center gap-3">
-            {cartService?.status !== "completed" ||
-              cartService?.status !== "cancelled" && (
-              <Button onClick={() => handleApproved(cartService)}>
-                Approved
-              </Button>
-            )}
-
-            {cartService?.status !== "completed" ||
-              cartService?.status !== "cancelled" && (
-                <Button onClick={showModal}>Adjust</Button>
-              )}
-            {cartService?.status !== "cancelled" && (
-              <Button onClick={() => handleReject(cartService)}>Reject</Button>
-            )}
+            <div className="flex justify-center items-center gap-3">
+              <div className="flex justify-center items-center gap-3">
+                {cartService?.status !== "cancelled" && (
+                  <>
+                    {cartService?.status !== "completed" && (
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => handleApproved(cartService)}
+                          className="py-2 px-3 rounded-sm bg-green-400 hover:bg-green-500/50 transition font-medium text-white"
+                        >
+                          Approved
+                        </button>
+                        <button
+                          onClick={showModal}
+                          className="py-2 px-4 rounded-sm border border-gray-500 hover:bg-orange-400 hover:border-orange-400 transition font-medium"
+                        >
+                          Adjust
+                        </button>
+                      </div>
+                    )}
+                    {cartService?.status === "completed" && (
+                      <button
+                        onClick={() => handleReject(cartService)}
+                        className="py-2 px-5 rounded-sm bg-rose-400 hover:bg-rose-500/50 transition font-medium text-white"
+                      >
+                        Reject
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

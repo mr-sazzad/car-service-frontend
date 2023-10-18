@@ -26,9 +26,9 @@ const BookingManagement = () => {
       status: "cancelled",
     };
 
-    message.success("status updated successfully");
+    const res = await updateSingleCart({ id, ...data });
 
-    await updateSingleCart({ id, ...data });
+    res && message.success("status updated successfully");
   };
 
   const columns = [

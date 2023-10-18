@@ -7,6 +7,7 @@ import {
 } from "@/app/redux/api/userApi";
 import { getUserInfo } from "@/app/utils/auth";
 import { hideEmail } from "@/app/utils/emailHide";
+import { message } from "antd";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
@@ -50,7 +51,12 @@ const Profile = () => {
         profileImage: profileImage || currentUser.profileImage,
       };
 
-      await updateUser({ id: userId, ...updatedData });
+      const res = await updateUser({ id: userId, ...updatedData });
+
+      if (res) {
+        message.success("Profile updated")
+      }
+
     } catch (error) {
       console.error("Error occurred:", error);
     }

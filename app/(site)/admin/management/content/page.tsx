@@ -1,9 +1,9 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetAllBlogsQuery } from "@/app/redux/api/blogs/blogApi";
+import { useDeleteSingleBlogMutation, useGetAllBlogsQuery } from "@/app/redux/api/blogs/blogApi";
 import MyTable from "@/components/Table";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import Link from "next/link";
 import { BiTrashAlt } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -11,8 +11,18 @@ import { MdRemoveRedEye } from "react-icons/md";
 const ContentManagement = () => {
   const { data: blogs, isLoading } = useGetAllBlogsQuery(undefined);
 
+  const [deleteSingleBlog] = useDeleteSingleBlogMutation();
+
   if (isLoading) {
     return <Loading />;
+  }
+
+  const handleRemove = async(id: string)=> {
+    const res = await deleteSingleBlog(id);
+
+    if (res) {
+      message.warning("blog deleted")
+    }
   }
 
   const columns = [
@@ -32,11 +42,11 @@ const ContentManagement = () => {
         return (
           <>
             <Link href={`/admin/management/content/${data}`}>
-              <Button className="border border-orange-500 hover:border-orange-600">
-                <MdRemoveRedEye className="text-orange-500" />
-              </Button>
+              <button className="border bg-orange-400  hover:bg-orange-600 px-4 py-[9px] rounded-md transition">
+                <MdRemoveRedEye className="text-white" />
+              </button>
             </Link>
-              <Button type="primary" danger className="ml-3">
+              <Button type="primary" danger className="ml-3" onClick={() =>handleRemove(data)}>
                 <BiTrashAlt/>
               </Button>
           </>

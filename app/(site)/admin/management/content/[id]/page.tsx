@@ -1,35 +1,43 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetSingleBlogQuery, useUpdateSingleBlogMutation } from "@/app/redux/api/blogs/blogApi";
+import {
+  useGetSingleBlogQuery,
+  useUpdateSingleBlogMutation,
+} from "@/app/redux/api/blogs/blogApi";
 import { message } from "antd";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-
 
 const UpdateBlog = () => {
   const { id } = useParams();
-    const { data: blog, isLoading } = useGetSingleBlogQuery(id);
-    const [updateSingleBlog] = useUpdateSingleBlogMutation();
+  const { data: blog, isLoading } = useGetSingleBlogQuery(id);
+  const [updateSingleBlog] = useUpdateSingleBlogMutation();
+  const router = useRouter();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   if (isLoading) {
     <Loading />;
   }
 
-  console.log(blog);
+  const onSubmit = async (data: any) => {
+    if (data.title === "" || data.content === "") {
+      return message.error(
+        "Not modified at all or cannot update due to empty input."
+      );
+    }
 
-  const onSubmit = async(data: any) => {
-      if (data.title === "" || data.content === "") {
-        return message.error("Not modified at all or cannot update due to empty input.")
-      }
-      
-      const res = await updateSingleBlog({id, data})
-      
-      if (res) {
-          message.success("Blog Modified")
-      }
+    const res = await updateSingleBlog({ id, data });
+
+    if (res) {
+      message.success("Blog Modified");
+      reset();
+
+      setTimeout(() => {
+        router.back();
+      }, 1000);
+    }
   };
 
   return (
@@ -42,8 +50,7 @@ const UpdateBlog = () => {
             </p>
             <div>
               <p className="font-medium text-base text-gray-500 gap-2 mb-2 flex flex-col lg:flex-row">
-                Blog Title:{" "}
-                <span className="text-black">{blog?.title}</span>
+                Blog Title: <span className="text-black">{blog?.title}</span>
               </p>
             </div>
             <div className="mt-5">
@@ -66,15 +73,15 @@ const UpdateBlog = () => {
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-                <div className="flex flex-col gap-1 mb-4 w-full">
-                  <label className="ml-2">Blog Title:</label>
-                  <input
-                    defaultValue={blog?.title}
-                    {...register("title")}
-                    type="text"
-                    className="border border-gray-600 outline-none h-[3rem] pl-2 rounded-md"
-                  />
-                </div>
+              <div className="flex flex-col gap-1 mb-4 w-full">
+                <label className="ml-2">Blog Title:</label>
+                <input
+                  defaultValue={blog?.title}
+                  {...register("title")}
+                  type="text"
+                  className="border border-gray-600 outline-none h-[3rem] pl-2 rounded-md"
+                />
+              </div>
 
               <div className="flex flex-col gap-1 mb-4">
                 <label className="ml-2">Blog Content:</label>

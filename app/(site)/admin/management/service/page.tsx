@@ -13,12 +13,14 @@ const ServiceManagement = () => {
   const [deleteSingleService] = useDeleteSingleServiceMutation();
 
   if (isLoading) {
-    <Loading />;
+   return <Loading />;
   }
 
   const handleServiceDelete = async(id: string) => {
     const res = await deleteSingleService(id);
-    console.log(res, "RESPONSE");
+    if(res) {
+      message.success("Service deleted successfully")
+    }
     
   };
 

@@ -7,6 +7,7 @@ import {
 } from "@/app/redux/api/userApi";
 import { getUserInfo } from "@/app/utils/auth";
 import { hideEmail } from "@/app/utils/emailHide";
+import { message } from "antd";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
@@ -27,19 +28,25 @@ const Profile = () => {
 
   const handleUserUpdate = async (data: any) => {
     try {
+      message.loading("Updating ...");
       const formData = new FormData();
       formData.append("image", data.file[0]);
 
+      let profileImage = null;
+
+      // Add await here to wait for the fetch request to complete before proceeding
       const response = await fetch(image_hosting_url, {
         method: "POST",
         body: formData,
       });
 
-      const imageResponse = await response.json();
-
-      let profileImage = null;
-      if (imageResponse?.success) {
-        profileImage = imageResponse?.data?.display_url;
+      // Ensure the response status is okay before trying to get the JSON
+      if (response.ok) {
+        const responseData = await response.json();
+        profileImage = responseData?.data?.display_url;
+      } else {
+        // Handle the case where the response is not okay
+        message.error("Image upload failed with status " + response.status);
       }
 
       const updatedData = {
@@ -50,7 +57,10 @@ const Profile = () => {
         profileImage: profileImage || user.profileImage,
       };
 
-      await updateUser({ id: userId, ...updatedData });
+      const res = await updateUser({ id: userId, ...updatedData });
+      if (res) {
+        message.success("Profile Updated");
+      }
     } catch (error) {
       console.error("Error occurred:", error);
     }
@@ -160,7 +170,9 @@ const Profile = () => {
                       <select
                         className="select select-bordered w-full outline-none"
                         {...register("bloodGroup")}
-                        defaultValue={user?.bloodGroup || "Select Your Blood Group"}
+                        defaultValue={
+                          user?.bloodGroup || "Select Your Blood Group"
+                        }
                       >
                         <option disabled>Select Your Blood Group</option>
                         <option>O+</option>

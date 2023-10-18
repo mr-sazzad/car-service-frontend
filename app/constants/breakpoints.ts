@@ -13,6 +13,13 @@ export const breakpointColumns = {
   400: 1,
 };
 
+export const blogsBreadPoints = {
+  default: 3,
+  1300: 3,
+  950: 2,
+  450: 1,
+};
+
 export const getStatusStyle = (status: string) => {
   if (status === "completed") {
     return "text-green-500";

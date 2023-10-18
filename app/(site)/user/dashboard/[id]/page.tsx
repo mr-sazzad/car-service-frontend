@@ -56,9 +56,13 @@ const ViewPage = () => {
 
   const { data: cart, isLoading: cartLoading } = useGetSingleFromCartQuery(id);
 
+  // console.log(cart, "CART");
+
   const { data: service, isLoading: serviceLoading } = useGetSingleServiceQuery(
     cart?.service
   );
+
+  // console.log(service, "SERVICE");
 
   if (cartLoading || serviceLoading) {
     return <Loading />;
@@ -67,7 +71,7 @@ const ViewPage = () => {
   const handleServiceCancel = async (id: string) => {
     const data = {
       id,
-      confirmedDate: null,
+      confirmedDate: "",
       status: "cancelled",
     };
 
@@ -88,7 +92,7 @@ const ViewPage = () => {
             {cart?.status}
           </p>
         </div>
-        {cart?.confirmedDate === null ? (
+        {cart?.confirmedDate === "" ? (
           <div className="flex flex-row gap-1 items-center">
             <p className="text-red-500 text-sm font-base">Confirm-Date:</p>
             <p className="text-sm font-base">Available After Booking</p>
@@ -110,22 +114,24 @@ const ViewPage = () => {
 
       <div className="container mx-auto my-5">
         <div className="mx-4 md:mx-8 lg:mx-10">
-          <div className="text-center font-medium text-base mb-5">
+          <div className="text-center font-bold mb-5 text-2xl text-gray-600">
             {service?.title}
           </div>
           <div className="flex flex-col gap-10 lg:gap-0 lg:flex-row justify-between">
             <div className="flex-1">
-              <p className="text-center">Product Details</p>
-              <div className="flex flex-row gap-1 items-center">
+              <p className="text-center text-xl font-semibold text-gray-500 mb-5">
+                Product Details
+              </p>
+              <div className="flex flex-row gap-1 items-center mb-2">
                 <p>Price: </p>
                 <p className="text-sm font-base flex items-center gap-1">
-                  {service?.price} <ImCoinDollar />
+                  {service?.price} <ImCoinDollar className="text-orange-500" />
                 </p>
               </div>
-              <div className="flex flex-row gap-1 items-center">
+              <div className="flex flex-row gap-1 items-center mb-2">
                 <p>Status: </p>
                 <p
-                  className={`text-sm font-base ${getStatusStyle(
+                  className={`text-sm font-semibold ${getStatusStyle(
                     cart?.status
                   )}`}
                 >
@@ -133,28 +139,30 @@ const ViewPage = () => {
                 </p>
               </div>
 
-              {cart?.confirmedDate === null ? (
+              {cart?.confirmedDate === "" ? (
                 <div className="flex flex-row gap-1 items-center">
-                  <p className="text-red-500 text-sm font-base">
-                    Confirm-Date:
+                  <p className="text-sm font-base">Confirm-Date:</p>
+                  <p className="text-sm font-semibold text-red-500">
+                    Available After Booking
                   </p>
-                  <p className="text-sm font-base">Available After Booking</p>
                 </div>
               ) : (
                 <div className="flex flex-row gap-1 items-center">
-                  <p className="text-green-500 text-sm font-base">
-                    Confirm-Date:
+                  <p className=" text-sm font-base">Confirm-Date:</p>
+                  <p className="text-sm font-semibold text-green-500">
+                    {cart?.confirmedDate}
                   </p>
-                  <p className="text-sm font-base">{cart?.confirmedDate}</p>
                 </div>
               )}
               <div className="flex flex-col gap-1">
-                <p className="mt-5">Description: </p>
+                <p className="mt-5 font-medium">Description: </p>
                 <p className="text-sm font-base">{service?.description}</p>
               </div>
             </div>
             <div className="flex-1">
-              <p className="text-center">Actions</p>
+              <p className="text-center text-xl font-semibold text-gray-500 mb-5">
+                Actions
+              </p>
 
               <div className="flex justify-center items-center">
                 <div className="mt-5 flex flex-row gap-3">
@@ -169,7 +177,7 @@ const ViewPage = () => {
                       Cancel
                     </Button>
                   )}
-                  {cart?.status !== "completed" && (
+                  {cart?.status === "completed" && (
                     <Button>
                       <Link href={`/review/${id}`}>Review</Link>
                     </Button>

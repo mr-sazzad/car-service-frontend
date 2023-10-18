@@ -21,7 +21,7 @@ const AddNewUser = () => {
       const formData = new FormData();
       formData.append("image", data.file[0]);
 
-      let profileImage = null;
+      let profileImage = "";
 
       fetch(imageHostingUrl as string, {
         method: "POST",
@@ -85,7 +85,7 @@ const AddNewUser = () => {
                   <label className="text-sm ml-2">Gender</label>
                   <select
                     className="select select-bordered w-full mb-4"
-                    defaultValue="Select your gender?"
+                    defaultValue="Male"
                     {...register("gender")}
                   >
                     <option disabled>Select your gender?</option>

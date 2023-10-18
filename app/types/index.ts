@@ -34,3 +34,11 @@ export type IUpdateCart = {
   status: string;
   confirmedDate: string | null;
 };
+
+export type IBlog = {
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  id: string;
+};

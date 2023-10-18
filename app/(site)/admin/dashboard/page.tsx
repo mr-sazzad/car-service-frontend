@@ -19,11 +19,11 @@ const AdminDashboard = () => {
     <Loading />;
   }
 
-  const totalUsers = users?.length - 1;
-  const totalServices = services?.length - 1;
+  const totalUsers = users?.length;
+  const totalServices = services?.length;
 
-  const totalBlogs = blogs?.length - 1;
-  const totalFeedbacks = feedbacks?.length - 1;
+  const totalBlogs = blogs?.length;
+  const totalFeedbacks = feedbacks?.length;
 
   return (
     <div className="container mx-auto">

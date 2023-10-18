@@ -6,11 +6,15 @@ import {
   useUpdateUserMutation,
 } from "@/app/redux/api/userApi";
 import { hideEmail } from "@/app/utils/emailHide";
+import { Switch } from "antd";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 import { MdOutlineErrorOutline } from "react-icons/md";
+import { useEffect } from 'react';
 
 // const apiKey = process.env.IMGBB_API_KEY;
 
@@ -20,12 +24,21 @@ const Profile = () => {
 
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675`;
 
-  const { data, isLoading } = useGetSingleUserQuery(id);
+  const { data, isLoading, isSuccess } = useGetSingleUserQuery(id);
   const [updateUser] = useUpdateUserMutation();
+  const [isBanned, setIsBanned] = useState(data?.isBanned);
+
+  useEffect(() => {
+    if (isSuccess) setIsBanned(data?.isBanned);
+  }, [isSuccess, data?.isBanned]);
+
 
   if (isLoading) {
-    <Loading />;
+    return <Loading />;
   }
+
+
+
 
   const handleUserUpdate = async (data: any) => {
     try {
@@ -58,6 +71,18 @@ const Profile = () => {
     }
   };
 
+
+  // console.log(isBanned)
+
+  const handleBannedUser = async (checked: boolean) => {
+    const updatedData = {
+      isBanned: checked,
+    };
+    await updateUser({ id, ...updatedData });
+    setIsBanned(checked);
+  };
+
+
   return (
     <div className="container mx-auto min-h-[80vh] my-5">
       <div className="mx-4 md:mx-8 lg:mx-10">
@@ -66,7 +91,7 @@ const Profile = () => {
             <div className="flex flex-col gap-3 mb-10">
               <div className="flex flex-col gap-1">
                 <div className="flex justify-center mt-5">
-                  <div>
+                  <div className="relative">
                     <Image
                       src={
                         data?.profileImage
@@ -78,6 +103,7 @@ const Profile = () => {
                       width={100}
                       className="flex justify-center items-center rounded-full p-1 border-2 border-gray-700"
                     />
+                      {data?.isBanned ? <div className="absolute h-4 w-4 rounded-full top-1 right-2 z-20 bg-rose-500 p-1 border-2 border-white"></div>: <div className="absolute h-4 w-4 rounded-full top-1 right-2 z-20 bg-green-500 p-1 border-2 border-white"></div>}
                   </div>
                 </div>
                 <div className="flex justify-center text-sm">@{data?.name}</div>
@@ -102,6 +128,19 @@ const Profile = () => {
                   <p className="text-xs flex gap-2 items-center">
                   <MdOutlineErrorOutline className="text-md text-red-500" /> You can&apos;t update person email
                   </p>
+                </div>
+                <div className="mt-5">
+                  <p className="text-md font-medium text-red-500 mb-2">Danger Zone</p>
+                  <div className="flex flex-col gap-2 items-start">
+                    <p className="text-xs text-gray-600 mb-2">User banned and un-banned section</p>
+                    <Switch
+                      checkedChildren={<CheckOutlined />}
+                      unCheckedChildren={<CloseOutlined />}
+                      checked={isBanned}
+                      onChange={handleBannedUser}
+                      className="-mt-2"
+                    />
+               </div>
                 </div>
               </div>
             </div>

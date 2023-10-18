@@ -1,13 +1,13 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
+import { useGetAllAvailableServicesQuery } from "@/app/redux/api/services/serviceApi";
 import { useGetAllUserQuery } from "@/app/redux/api/userApi";
 
 const Survey = ({}) => {
   const { data: users, isLoading } = useGetAllUserQuery(undefined);
   const { data: services, isLoading: servicesLoading } =
-    useGetAllServicesQuery(undefined);
+    useGetAllAvailableServicesQuery(undefined);
 
   if (isLoading || servicesLoading) {
     return <Loading />;

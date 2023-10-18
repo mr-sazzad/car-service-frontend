@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
 import Loading from "@/app/loading";
-import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
+import { useGetAllAvailableServicesQuery } from "@/app/redux/api/services/serviceApi";
 import SingleServiceCard from "@/components/SingleServiceCard";
 import { Slider } from "antd";
 import { useState } from "react";
 
 const Services = () => {
-  const { data: services, isLoading } = useGetAllServicesQuery(undefined);
+  const { data: services, isLoading } =
+    useGetAllAvailableServicesQuery(undefined);
   const [searchTerm, setSearchTerm] = useState("");
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [disabled, setDisabled] = useState(false);
@@ -44,7 +45,9 @@ const Services = () => {
               />
             </div>
             <div>
-              <p className="text-center text-xl font-medium text-gray-600">Filter By Price</p>
+              <p className="text-center text-xl font-medium text-gray-600">
+                Filter By Price
+              </p>
               <Slider
                 range
                 min={0}

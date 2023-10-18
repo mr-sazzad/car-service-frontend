@@ -1,7 +1,10 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetSingleServiceQuery } from "@/app/redux/api/services/serviceApi";
+import {
+  useGetSingleServiceQuery,
+  useUpdateSingleServiceMutation,
+} from "@/app/redux/api/services/serviceApi";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -10,17 +13,18 @@ import { ImCoinDollar } from "react-icons/im";
 const ServiceManagement = () => {
   const { id } = useParams();
   const { data: service, isLoading } = useGetSingleServiceQuery(id);
+  const [updateSingleService] = useUpdateSingleServiceMutation();
 
   const { register, handleSubmit } = useForm();
 
   if (isLoading) {
-    <Loading />;
+    return <Loading />;
   }
 
-  console.log(service);
+  const onSubmit = async (data: any) => {
+    const res = await updateSingleService({ id, data });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+    console.log(res);
   };
 
   return (
@@ -72,7 +76,7 @@ const ServiceManagement = () => {
                     {...register("title")}
                     type="text"
                     id="title"
-                    className="border border-gray-600 outline-none h-[2rem] pl-2 rounded-md"
+                    className="border border-gray-300 outline-none h-[3rem] pl-2 rounded-md"
                   />
                 </div>
                 <div className="flex flex-col gap-1 mb-4 w-full">
@@ -82,9 +86,21 @@ const ServiceManagement = () => {
                     {...register("price")}
                     type="text"
                     id="price"
-                    className="border border-gray-600 outline-none h-[2rem] pl-2 rounded-md"
+                    className="border border-gray-300 outline-none h-[3rem] pl-2 rounded-md"
                   />
                 </div>
+              </div>
+              <div className="flex flex-col gap-1 mb-4 w-full">
+                <label htmlFor="price ml-2">Status:</label>
+                <select
+                  className="select select-bordered w-full"
+                  defaultValue={service?.status || "Select Service status?"}
+                  {...register("status")}
+                >
+                  <option disabled>Select Service status?</option>
+                  <option>current</option>
+                  <option>up_coming</option>
+                </select>
               </div>
               <div className="flex flex-col gap-1 mb-4">
                 <label htmlFor="description ml-2">Description:</label>
@@ -93,7 +109,7 @@ const ServiceManagement = () => {
                   rows={7}
                   {...register("description")}
                   id="description"
-                  className="border border-gray-600 outline-none pl-2 rounded-md"
+                  className="border border-gray-300 outline-none pl-2 rounded-md"
                 />
               </div>
               <button

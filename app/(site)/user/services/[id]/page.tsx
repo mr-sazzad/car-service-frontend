@@ -3,6 +3,7 @@
 import { breakpointColumnsObj } from "@/app/constants/breakpoints";
 import Loading from "@/app/loading";
 import { useGetSingleServiceQuery } from "@/app/redux/api/services/serviceApi";
+import PersonCard from "@/components/reviews/ReviewCard";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -66,10 +67,7 @@ const DetailsPage = () => {
               columnClassName="my-masonry-grid_column"
             >
               {data?.Reviews.map((review: any) => (
-                <div key={review.id} className="flex flex-col gap-2">
-                  <div className="flex flex-row gap-3">user details</div>
-                  <div>{review?.review}</div>
-                </div>
+                <PersonCard key={review?.id} rev={review} />
               ))}
             </Masonry>
           </div>

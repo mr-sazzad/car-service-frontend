@@ -3,14 +3,14 @@
 import Loading from "@/app/loading";
 import { useGetAllBlogsQuery } from "@/app/redux/api/blogs/blogApi";
 import { useGetAllFeedbacksQuery } from "@/app/redux/api/feedback/feedbackApi";
-import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
+import { useGetAllAvailableServicesQuery } from "@/app/redux/api/services/serviceApi";
 import { useGetAllUserQuery } from "@/app/redux/api/userApi";
 
 const AdminDashboard = () => {
   const { data: users, isLoading: usersLoading } =
     useGetAllUserQuery(undefined);
   const { data: services, isLoading: servicesLoading } =
-    useGetAllServicesQuery(undefined);
+    useGetAllAvailableServicesQuery(undefined);
 
   const { data: blogs } = useGetAllBlogsQuery(undefined);
   const { data: feedbacks } = useGetAllFeedbacksQuery(undefined);

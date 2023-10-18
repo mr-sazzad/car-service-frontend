@@ -2,7 +2,7 @@
 
 import Loading from "@/app/loading";
 import { useGetAllFromCartQuery } from "@/app/redux/api/cart/cartApi";
-import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
+import { useGetAllAvailableServicesQuery } from "@/app/redux/api/services/serviceApi";
 import MyTable from "@/components/Table";
 import { Button } from "antd";
 import Link from "next/link";
@@ -13,7 +13,7 @@ const Dashboard = () => {
   const { data: cartData, isLoading: isCartLoading } =
     useGetAllFromCartQuery(undefined);
   const { data: services, isLoading: isServicesLoading } =
-    useGetAllServicesQuery(undefined);
+    useGetAllAvailableServicesQuery(undefined);
 
   const [cartProducts, setCartProducts] = useState([]);
 

@@ -1,27 +1,31 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useDeleteSingleServiceMutation, useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
+import {
+  useDeleteSingleServiceMutation,
+  useGetAllServicesQuery
+} from "@/app/redux/api/services/serviceApi";
 import MyTable from "@/components/Table";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import Link from "next/link";
 import { MdRemoveRedEye } from "react-icons/md";
 import { PiTrash } from "react-icons/pi";
 
 const ServiceManagement = () => {
-  const { data: products, isLoading } = useGetAllServicesQuery(undefined);
+  const { data: products, isLoading } =
+    useGetAllServicesQuery(undefined);
+  
   const [deleteSingleService] = useDeleteSingleServiceMutation();
 
   if (isLoading) {
-   return <Loading />;
+    return <Loading />;
   }
 
-  const handleServiceDelete = async(id: string) => {
+  const handleServiceDelete = async (id: string) => {
     const res = await deleteSingleService(id);
-    if(res) {
-      message.success("Service deleted successfully")
+    if (res) {
+      message.success("Service deleted successfully");
     }
-    
   };
 
   const columns = [

@@ -1,11 +1,11 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetAllServicesQuery } from "../app/redux/api/services/serviceApi";
+import { useGetAllAvailableServicesQuery } from "../app/redux/api/services/serviceApi";
 import ServiceCard from "./service/ServiceCard";
 
 const AvailableServices = () => {
-  const { data, isLoading } = useGetAllServicesQuery(undefined);
+  const { data, isLoading } = useGetAllAvailableServicesQuery(undefined);
 
   if (isLoading) {
     <Loading />;

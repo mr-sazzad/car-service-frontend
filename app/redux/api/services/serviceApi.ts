@@ -12,9 +12,17 @@ const serviceApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.services],
     }),
 
-    getAllServices: build.query({
+    getAllAvailableServices: build.query({
       query: () => ({
         url: "/services",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.services],
+    }),
+
+    getAllServices: build.query({
+      query: () => ({
+        url: "/services/all",
         method: "GET",
       }),
       providesTags: [tagTypes.services],
@@ -56,6 +64,7 @@ const serviceApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGetAllAvailableServicesQuery,
   useGetAllServicesQuery,
   useGetAllUpcomingServicesQuery,
   useGetSingleServiceQuery,

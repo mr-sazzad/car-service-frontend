@@ -74,7 +74,7 @@ const Profile = () => {
             <div className="flex flex-col gap-3 mb-10">
               <div className="flex flex-col gap-1">
                 <div className="flex justify-center mt-5">
-                  <div>
+                  <div className="relative">
                     <Image
                       src={
                         user?.profileImage
@@ -86,9 +86,15 @@ const Profile = () => {
                       width={100}
                       className="flex justify-center items-center rounded-full p-1 border-2 border-gray-700"
                     />
+                    <div className="absolute h-4 w-4 rounded-full top-1 right-2 z-20 bg-green-500 p-1 border-2 border-white"></div>
                   </div>
                 </div>
-                <div className="flex justify-center text-sm">@{user?.name}</div>
+                <div className="flex justify-center text-sm rounded-full">
+                  <div className="inline-flex rounded-full bg-green-400 py-[2px] px-2 text-white">
+
+                  @{user?.name}
+                  </div>
+                </div>
               </div>
               <div className="ml-5 lg:ml-3 flex flex-col gap-3">
                 <p className="text-lg font-medium text-gray-800">Information</p>

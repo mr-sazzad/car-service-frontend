@@ -5,15 +5,17 @@ import {
   useGetSingleServiceQuery,
   useUpdateSingleServiceMutation,
 } from "@/app/redux/api/services/serviceApi";
-import { useParams } from "next/navigation";
+import { message } from 'antd';
+import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-
 import { ImCoinDollar } from "react-icons/im";
 
 const ServiceManagement = () => {
   const { id } = useParams();
   const { data: service, isLoading } = useGetSingleServiceQuery(id);
   const [updateSingleService] = useUpdateSingleServiceMutation();
+
+  const router = useRouter();
 
   const { register, handleSubmit } = useForm();
 
@@ -22,9 +24,20 @@ const ServiceManagement = () => {
   }
 
   const onSubmit = async (data: any) => {
-    const res = await updateSingleService({ id, data });
+try{
+  const res = await updateSingleService({ id, data });
 
-    console.log(res);
+  if(res){
+      setTimeout(() =>{
+       message.success("Service Updated")
+        router.push('/admin/management/service')
+      })
+    }
+  }catch(err:any){
+
+  message.error("something went wrong");
+
+  }
   };
 
   return (

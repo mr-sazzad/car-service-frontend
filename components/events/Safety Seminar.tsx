@@ -27,8 +27,11 @@ const SafetySeminar = () => {
                   and help create a more secure driving experience for all.
                 </p>
                 <div className="flex justify-end">
-                  <button className="bg-orange-500 px-4 py-1">
-                    Register Now
+                  <button
+                    className="bg-orange-300 px-4 py-1 mt-3 cursor-not-allowed text-white"
+                    disabled
+                  >
+                    Registration Start Soon
                   </button>
                 </div>
               </div>

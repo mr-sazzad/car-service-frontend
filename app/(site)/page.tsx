@@ -1,7 +1,8 @@
 import AvailableServices from "@/components/AvailableServices";
-import LatestNews from "@/components/LatestNews";
+import OverView from "@/components/OverView";
 import UpcomingServices from "@/components/UpcomingServices";
 import Events from "@/components/events/Events";
+import LatestNews from "@/components/news/LatestNews";
 import ClientReview from "@/components/reviews/ClientReview";
 import Survey from "@/components/survey/Survey";
 import OurTeam from "@/components/team/OurTeam";
@@ -16,6 +17,7 @@ export default function Home() {
       <Events />
       <Survey />
       <ClientReview />
+      <OverView />
       <LatestNews />
       <OurTeam />
     </div>

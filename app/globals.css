@@ -45,6 +45,15 @@ select option:hover {
   background-size: cover;
 }
 
+.latest-news-bg-1 {
+  background-image: url("/assets/latest-news-1.jpg");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  backdrop-filter: blur(100px);
+  background-size: cover;
+}
+
 .my-masonry-grid {
   display: -webkit-box;
   display: -ms-flexbox;

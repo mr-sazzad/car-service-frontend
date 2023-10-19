@@ -30,7 +30,7 @@ const Blogs = () => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {blogs.map((blog: IBlog) => (
+            {blogs?.map((blog: IBlog) => (
               <BlogCard key={blog.id} data={blog} />
             ))}
           </Masonry>

@@ -37,7 +37,7 @@ const Profile = () => {
 
       const imageResponse = await response.json();
 
-      let profileImage = null;
+      let profileImage = "";
       if (imageResponse?.success) {
         profileImage = imageResponse?.data?.display_url;
       }

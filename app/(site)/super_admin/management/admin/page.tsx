@@ -1,18 +1,20 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useGetAllUserQuery } from "@/app/redux/api/userApi";
+import { useGetAllAdminsQuery } from "@/app/redux/api/userApi";
 import MyTable from "@/components/Table";
 import { Button } from "antd";
 import Link from "next/link";
 import { MdRemoveRedEye } from "react-icons/md";
 
 const Dashboard = () => {
-  const { data: users, isLoading } = useGetAllUserQuery(undefined);
+  const { data: admins, isLoading } = useGetAllAdminsQuery(undefined);
 
   if (isLoading) {
     return <Loading />;
   }
+
+  console.log(admins, "admins");
 
   const columns = [
     {
@@ -38,7 +40,7 @@ const Dashboard = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/management/user/${data}`}>
+            <Link href={`/super_admin/management/admin/${data}`}>
               <Button className="border border-orange-500 hover:border-orange-600">
                 <MdRemoveRedEye className="text-orange-500" />
               </Button>
@@ -60,7 +62,7 @@ const Dashboard = () => {
             <Button>Add New Admin</Button>
           </Link>
         </div>
-        <MyTable loading={isLoading} columns={columns} dataSource={users} />
+        <MyTable loading={isLoading} columns={columns} dataSource={admins} />
       </div>
     </div>
   );

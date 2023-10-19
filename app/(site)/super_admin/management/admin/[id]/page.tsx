@@ -2,8 +2,8 @@
 
 import Loading from "@/app/loading";
 import {
-  useGetSingleUserQuery,
-  useUpdateUserMutation,
+    useGetSingleUserQuery,
+    useUpdateUserMutation,
 } from "@/app/redux/api/userApi";
 import { hideEmail } from "@/app/utils/emailHide";
 import { Switch } from "antd";

@@ -4,7 +4,6 @@ import Loading from "@/app/loading";
 import { useGetAllFromCartQuery } from "@/app/redux/api/cart/cartApi";
 import { useGetAllAvailableServicesQuery } from "@/app/redux/api/services/serviceApi";
 import MyTable from "@/components/Table";
-import { Button } from "antd";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -60,9 +59,9 @@ const Dashboard = () => {
         return (
           <>
             <Link href={`/user/dashboard/${data}`}>
-              <Button className="border border-orange-500 hover:border-orange-600">
-                <MdRemoveRedEye className="text-orange-500" />
-              </Button>
+              <button className="border px-4 py-[9px] transition bg-orange-500 hover:bg-orange-600 rounded-md">
+                <MdRemoveRedEye className="text-white" />
+              </button>
             </Link>
           </>
         );
@@ -73,6 +72,11 @@ const Dashboard = () => {
   return (
     <div className="mt-5 container mx-auto">
       <div className="mx-4 md:mx-8 lg:mx-10">
+        <div className="h-[150px] w-full bg-gray-50 flex justify-center items-center">
+          <h1 className="text-center text-4xl font-semibold text-orange-600 my-5 hover:text-5xl transition-all ease-in duration-300">
+            # Your Orders
+          </h1>
+        </div>
         <MyTable
           loading={isCartLoading}
           columns={columns}

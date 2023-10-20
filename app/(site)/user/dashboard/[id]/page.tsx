@@ -16,9 +16,13 @@ import { GiShatteredHeart } from "react-icons/gi";
 import { ImCoinDollar } from "react-icons/im";
 
 const ViewPage = () => {
-  const [updateSingleCart] = useUpdateSingleCartMutation();
-
   const { id } = useParams();
+  
+  const [updateSingleCart] = useUpdateSingleCartMutation();
+  const { data: cart, isLoading: cartLoading } = useGetSingleFromCartQuery(id);
+
+  // console.log(cart, "CART");
+
   const [confirmedTime, setConfirmedTime] = useState(
     new Date().toLocaleString()
   );
@@ -53,10 +57,6 @@ const ViewPage = () => {
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     setConfirmedTime(dateString);
   };
-
-  const { data: cart, isLoading: cartLoading } = useGetSingleFromCartQuery(id);
-
-  // console.log(cart, "CART");
 
   const { data: service, isLoading: serviceLoading } = useGetSingleServiceQuery(
     cart?.service

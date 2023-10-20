@@ -230,6 +230,12 @@ const ViewBooking = () => {
                         >
                           Adjust
                         </button>
+                        <button
+                          onClick={() => handleReject(cartService)}
+                          className="py-2 px-5 rounded-sm bg-rose-400 hover:bg-rose-500/50 transition font-medium text-white"
+                        >
+                          Reject
+                        </button>
                       </div>
                     )}
                     {cartService?.status === "completed" && (

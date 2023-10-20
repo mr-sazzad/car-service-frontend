@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!isCartLoading && !isServicesLoading && cartData && services) {
-      const updatedCartProducts = cartData.map((item: any) => {
+      const updatedCartProducts = cartData?.map((item: any) => {
         const service = services.find(
           (product: any) => product.id === item.service
         );
@@ -28,7 +28,7 @@ const Dashboard = () => {
     }
   }, [isCartLoading, isServicesLoading, cartData, services]);
 
-  if (isCartLoading || isServicesLoading || cartProducts.length === 0) {
+  if (isCartLoading || isServicesLoading) {
     return <Loading />;
   }
 

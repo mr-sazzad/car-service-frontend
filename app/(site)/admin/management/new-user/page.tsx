@@ -38,9 +38,15 @@ const AddNewUser = () => {
         profileImage: profileImage,
       };
   
-      const result = await userSignUp(createUserData);
-  
-      if (result) {
+      const result: any = await userSignUp(createUserData);
+      
+      console.log(result, "result")
+
+      if (result?.data?.success === false) {
+        message.error("something went wrong");
+        reset();
+      }
+      else {
         message.success("User signed up successfully");
         router.push('/admin/management/user');
         reset();

@@ -61,6 +61,7 @@ const DetailsPage = () => {
         <div className="mt-5 border-t border-gray-300">
           <div className="mt-5">
             <p className="font-medium text-lg text-gray-400 mb-5">_Reviews</p>
+            <div className="flex justify-center">
             <Masonry
               breakpointCols={breakpointColumnsObj}
               className="my-masonry-grid"
@@ -70,6 +71,7 @@ const DetailsPage = () => {
                 <PersonCard key={review?.id} rev={review} />
               ))}
             </Masonry>
+       </div>
           </div>
         </div>
       </div>

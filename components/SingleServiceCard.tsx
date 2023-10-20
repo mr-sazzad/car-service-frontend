@@ -7,13 +7,13 @@ import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const SingleServiceCard = ({ service }: { service: any }) => {
-  const { userId, role } = getUserInfo() as any;
+  const { userId } = getUserInfo() as any;
   const [addToCart] = useAddToCartMutation();
 
   const handleCart = async (data: any) => {
     try {
       const createData = {
-        service: data.id,
+        service: data?.id,
         userId,
       };
       const result = await addToCart(createData);

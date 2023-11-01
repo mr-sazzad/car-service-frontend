@@ -17,7 +17,7 @@ import { ImCoinDollar } from "react-icons/im";
 
 const ViewPage = () => {
   const { id } = useParams();
-  
+
   const [updateSingleCart] = useUpdateSingleCartMutation();
   const { data: cart, isLoading: cartLoading } = useGetSingleFromCartQuery(id);
 
@@ -166,9 +166,10 @@ const ViewPage = () => {
 
               <div className="flex justify-center items-center">
                 <div className="mt-5 flex flex-row gap-3">
-                  {cart?.status !== "cancelled" && (
-                    <Button onClick={showModal}>Book</Button>
-                  )}
+                  {cart?.status !== "cancelled" ||
+                    (cart?.status !== "completed" && (
+                      <Button onClick={showModal}>Book</Button>
+                    ))}
                   {cart?.status !== "cancelled" && (
                     <Button
                       onClick={() => handleServiceCancel(cart?.id)}

@@ -23,9 +23,13 @@ const SingUp = () => {
 
   return (
     <div className="container h-[100vh] w-full flex flex-col justify-center items-center mb-10 sign-up-bg">
-      <div className="bg-white rounded-md">
-        <div className="flex justify-center mt-5"><Logo /></div>
-        <h1 className="mb-5 text-2xl font-semibold text-center">Register Your Account</h1>
+      <div className="bg-white rounded-md w-full sm:w-[400px]">
+        <div className="flex justify-center pt-5">
+          <Logo />
+        </div>
+        <h1 className="mb-5 text-2xl font-semibold text-center">
+          Register Your Account
+        </h1>
         <div className="px-10 py-10 shadow-md">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
             <div className="flex flex-col">
@@ -33,7 +37,7 @@ const SingUp = () => {
               <input
                 type="text"
                 {...register("name", { required: true })}
-                className="w-[350px] border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
+                className="w-full border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
               />
             </div>
             <div className="flex flex-col">
@@ -41,7 +45,7 @@ const SingUp = () => {
               <input
                 type="email"
                 {...register("email", { required: true })}
-                className="w-[350px] border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
+                className="w-full border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
               />
             </div>
             <div className="flex flex-col">
@@ -49,7 +53,7 @@ const SingUp = () => {
               <input
                 type="password"
                 {...register("password", { required: true })}
-                className="w-[350px] border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
+                className="w-full border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
               />
             </div>
 

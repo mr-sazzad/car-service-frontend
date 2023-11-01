@@ -1,6 +1,6 @@
 "use client";
 
-import { breakpointColumns } from "@/app/constants/breakpoints";
+import { breakpointColumnsObj } from "@/app/constants/breakpoints";
 import Loading from "@/app/loading";
 import { useGetAllReviewsQuery } from "@/app/redux/api/reviews/reviewsApi";
 import Masonry from "react-masonry-css";
@@ -23,7 +23,7 @@ const ClientReview = () => {
         </div>
         <div className="flex justify-center">
           <Masonry
-            breakpointCols={breakpointColumns}
+            breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >

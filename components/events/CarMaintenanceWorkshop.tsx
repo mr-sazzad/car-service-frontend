@@ -1,7 +1,7 @@
 const CarMaintenanceWorkshop = () => {
   return (
     <div className="container mx-auto my-5">
-      <div className="mx-4 md:mx-8 lg:mx-10 mt-10">
+      <div className="ml-4 mr-4 md:mx-8 lg:mx-10 mt-10">
         <div className="flex flex-col lg:flex-row justify-center items-center">
           <div className="flex justify-center items-center max-w-4xl">
             <div className="flex flex-col lg:flex-row gap-5 bg-slate-200 p-5 rounded-md border-2 border-slate-300">

@@ -4,8 +4,23 @@ const OilCard = () => {
   return (
     <div className="bg-black">
       <div className="flex flex-row relative">
-        <div className="flex-col gap-3 p-10">
-          <p className="text-lg font-medium text-white mb-2 tracking-widest">
+        <div
+          className="
+            flex-col 
+            gap-3 
+            p-10
+            z-[1000]
+          "
+        >
+          <p
+            className="
+              text-lg 
+              font-medium 
+              text-white 
+              mb-2 
+              tracking-widest 
+            "
+          >
             IT&apos;S THAT TIME AGAIN
           </p>
           <div className="leading-[2px]">
@@ -17,17 +32,34 @@ const OilCard = () => {
               <p className="text-3xl font-bold text-white">OIL CHANGE</p>
             </div>
           </div>
-          <div className="mt-10 font-sm text-red-800 hover:font-bold transition-all duration-300">
+          <div
+            className="
+              mt-10 
+              font-sm 
+              text-red-800 
+              hover:font-bold 
+              transition-all 
+              duration-300
+            "
+          >
             EVENTS STARTS SOON
           </div>
         </div>
-        <div className="absolute right-0 bottom-0 overflow-hidden">
-          <Image
-            src="/assets/change-oil.png"
-            alt="oil-image"
-            height={400}
-            width={400}
-          />
+        <div
+          className="
+            absolute 
+            right-0 
+            bottom-0 
+            overflow-hidden 
+            lg:h-[400px] 
+            lg:w-[400px] 
+            md:h-[270px] 
+            md:w-[300px] 
+            h-[170px] 
+            w-[200px]
+        "
+        >
+          <Image src="/assets/change-oil.png" alt="oil-image" fill />
         </div>
       </div>
     </div>

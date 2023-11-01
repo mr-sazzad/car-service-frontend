@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Loading from "@/app/loading";
 import { useGetSingleUserQuery } from "@/app/redux/api/userApi";
@@ -7,14 +7,14 @@ import Image from "next/image";
 
 const PersonCard = ({ rev }: { rev: any }) => {
   console.log(rev, "rev");
-  const { data:user, isLoading } = useGetSingleUserQuery(rev?.userId);
+  const { data: user, isLoading } = useGetSingleUserQuery(rev?.userId);
 
   if (isLoading) {
     return <Loading />;
   }
-  
+
   return (
-    <div className="card card-compact w-[300px] bg-base-100 shadow-xl border border-gray-300 relative">
+    <div className="card card-compact w-full bg-base-100 shadow-xl border border-gray-300 relative">
       <div className="card-body">
         <div className="flex flex-row gap-3 items-center">
           <Image
@@ -22,10 +22,10 @@ const PersonCard = ({ rev }: { rev: any }) => {
             alt="profile-image"
             height={40}
             width={40}
-            className="rounded-full border-2 border-gray-500 p-1"
+            className="rounded-full border-2 border-gray-400 p-1"
           />
           <div>
-            <p className="text-sm font-medium">@ {user?.name}</p>
+            <p className="text-sm font-medium">{user?.name}</p>
             <p className="text-xs font-medium">
               {new Date(rev?.createdAt).toLocaleDateString()}
             </p>

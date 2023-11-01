@@ -167,10 +167,11 @@ const ViewPage = () => {
 
               <div className="flex justify-center items-center">
                 <div className="mt-5 flex flex-row gap-3">
-                  {cart?.status !== "cancelled" ||
-                    (cart?.status !== "completed" && (
+                  {cart?.status !== "cancelled" &&
+                    cart?.status !== "completed" && (
                       <Button onClick={showModal}>Book</Button>
-                    ))}
+                    )}
+
                   {cart?.status !== "cancelled" && (
                     <Button
                       onClick={() => handleServiceCancel(cart?.id)}

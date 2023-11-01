@@ -109,7 +109,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="bg-gray-200 flex-1 rounded-md p-5">
-            <div className="border border-gray-400 rounded-md">
+            <div className="border sm:border-gray-400 rounded-md">
               <p className="text-center text-lg font-medium my-5 px-5">
                 Update Your Information
               </p>

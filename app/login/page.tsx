@@ -3,7 +3,7 @@
 import { message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Logo from "../../components/Logo";
 import { KEY } from "../constants/role";
@@ -13,6 +13,8 @@ import { setToLocalStorage } from "../utils/localStorage";
 
 const Login = () => {
   const [userLogin] = useUserLoginMutation();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const userInfo = getUserInfo() as any;
 
@@ -28,27 +30,33 @@ const Login = () => {
 
   const onSubmit = async (data: any) => {
     try {
+      setIsLoading(true);
       const res: any = await userLogin(data);
 
       if (res?.data?.success === false) {
+        setIsLoading(false);
         message.error("something went wrong");
       } else if (!!res?.data) {
-        if (!!res?.data) {
-          message.success("login success");
-          setToLocalStorage(KEY, res.data);
-        }
+        setIsLoading(false);
+        message.success("login success");
+        setToLocalStorage(KEY, res.data);
       }
 
       reset();
     } catch (err) {
+      setIsLoading(false);
       message.error("something went wrong");
     }
   };
 
+  if (isLoading) {
+    message.loading("Loading...");
+  }
+
   return (
-    <div className="container h-[100vh] w-full mb-10 login-bg flex flex-col justify-center items-center">
-      <div className="bg-white rounded-md">
-        <div className="flex justify-center mt-4">
+    <div className="container h-[100vh] w-full login-bg flex flex-col justify-center items-center">
+      <div className="bg-white rounded-md w-full sm:w-[400px]">
+        <div className="flex justify-center pt-4">
           <Logo />
         </div>
         <h1 className="mb-5 text-2xl font-semibold text-center">
@@ -61,7 +69,7 @@ const Login = () => {
               <input
                 type="email"
                 {...register("email", { required: true })}
-                className="w-[350px] border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
+                className="w-full border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
               />
             </div>
             <div className="flex flex-col">
@@ -69,7 +77,7 @@ const Login = () => {
               <input
                 type="password"
                 {...register("password", { required: true })}
-                className="w-[350px] border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
+                className="w-full border border-gray-300 outline-none py-1 px-2 rounded-md mb-4"
               />
             </div>
 

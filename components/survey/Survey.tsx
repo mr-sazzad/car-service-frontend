@@ -25,22 +25,22 @@ const Survey = ({}) => {
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row justify-between items-center my-5 gap-3 w-full">
-          <div className="w-full h-[100px] bg-green-300 p-5 rounded-md hover:bg-green-400 hover:h-[150px] transition-all duration-300 group">
-            <h2 className="text-2xl font-medium group-hover:text-3xl group-hover:font-bold transition-all duration-300">
+          <div className="w-full bg-green-300 p-5 rounded-md hover:bg-green-400 hover:p-5 transition-all duration-300 group">
+            <h2 className="text-2xl font-medium group-hover:text-3xl group-hover:font-semibold transition-all duration-300">
               Total Happy Customers
             </h2>
-            <p className="text-3xl font-bold group-hover:text-4xl group-hover:font-extrabold transition-all duration-300 group-hover:pt-5">
+            <p className="text-3xl font-semibold group-hover:text-4xl group-hover:font-bold transition-all duration-300 group-hover:pt-5">
               {totalUsers > 9
                 ? `${totalUsers}`
                 : totalUsers?.toString().padStart(2, "0")}{" "}
               People
             </p>
           </div>
-          <div className="w-full h-[100px] bg-indigo-300 p-5 rounded-md hover:bg-indigo-400 hover:h-[150px] transition-all duration-300 group">
-            <h2 className="text-2xl font-medium group-hover:font-bold group-hover:text-3xl transition-all duration-300">
+          <div className="w-full p-5 hover:p-5 bg-indigo-300 rounded-md hover:bg-indigo-400 transition-all duration-300 group">
+            <h2 className="text-2xl font-medium group-hover:font-semibold group-hover:text-3xl transition-all duration-300">
               We Currently Providing More Then
             </h2>
-            <p className="text-3xl font-bold group-hover:text-4xl group-hover:font-extrabold transition-all duration-300 group-hover:pt-5">
+            <p className="text-3xl font-semibold group-hover:text-4xl group-hover:font-bold transition-all duration-300 group-hover:pt-5">
               {totalServices >= 9
                 ? `${totalServices}`
                 : totalServices?.toString().padStart(2, "0")}{" "}

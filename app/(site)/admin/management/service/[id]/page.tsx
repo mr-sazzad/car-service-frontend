@@ -2,18 +2,23 @@
 
 import Loading from "@/app/loading";
 import {
+  useDeleteSingleServiceMutation,
   useGetSingleServiceQuery,
   useUpdateSingleServiceMutation,
 } from "@/app/redux/api/services/serviceApi";
-import { message } from 'antd';
+import { message } from "antd";
 import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { ImCoinDollar } from "react-icons/im";
+import {
+  PiCurrencyDollarSimpleBold,
+  PiWarningOctagonLight,
+} from "react-icons/pi";
 
 const ServiceManagement = () => {
   const { id } = useParams();
   const { data: service, isLoading } = useGetSingleServiceQuery(id);
   const [updateSingleService] = useUpdateSingleServiceMutation();
+  const [deleteSingleService] = useDeleteSingleServiceMutation();
 
   const router = useRouter();
 
@@ -24,20 +29,26 @@ const ServiceManagement = () => {
   }
 
   const onSubmit = async (data: any) => {
-try{
-  const res = await updateSingleService({ id, data });
+    try {
+      const res = await updateSingleService({ id, data });
 
-  if(res){
-      setTimeout(() =>{
-       message.success("Service Updated")
-        router.push('/admin/management/service')
-      })
+      if (res) {
+        setTimeout(() => {
+          message.success("Service Updated");
+          router.push("/admin/management/service");
+        });
+      }
+    } catch (err: any) {
+      message.error("something went wrong");
     }
-  }catch(err:any){
+  };
 
-  message.error("something went wrong");
+  const handleDelete = async (id: string) => {
+    const result = await deleteSingleService(id);
 
-  }
+    if (result) {
+      message.success("Service Removed");
+    }
   };
 
   return (
@@ -57,7 +68,7 @@ try{
                 Service Charge:{" "}
                 <div className="flex gap-1 items-center">
                   <span className="text-black">{service?.price}</span>
-                  <ImCoinDollar className="text-orange-500" />
+                  <PiCurrencyDollarSimpleBold className="text-orange-500" />
                 </div>
               </p>
             </div>
@@ -66,13 +77,26 @@ try{
                 Description: <span>{service?.description}</span>
               </p>
             </div>
-            <div className="flex">
-              <span
-                className="text-sm mt-5 px-5 py-2 rounded-full bg-orange-400 font-medium text-white hover:bg-orange-600/50 transition tooltip tooltip-[gray-300]"
-                data-tip="service id"
-              >
-                {service?.id}
-              </span>
+            <div className="flex flex-col gap-2">
+              <p className="mb-2 text-2xl font-semibold">Danger Zone</p>
+              <div className="p-5 bg-gray-300 rounded-md">
+                <div className="p-3 bg-[#1F1315] border border-[#591A1A]">
+                  <div>
+                    <p className="text-sm mb-4 flex gap-2">
+                      <PiWarningOctagonLight className="text-[#591A1A] text-lg" />{" "}
+                      If you wish to proceed with the deletion of this service,
+                      please feel free to do so now. Your prompt action will
+                      ensure the seamless removal of the service from the system
+                    </p>
+                    <button
+                      onClick={() => handleDelete(service?.id)}
+                      className="px-3 py-1 border-[#591A1A] bg-transparent rounded-md hover:bg-[#E5484D] transition text-sm"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="flex-1 flex-col gap-3 w-full">

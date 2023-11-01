@@ -1,10 +1,7 @@
 "use client";
 
 import Loading from "@/app/loading";
-import {
-  useDeleteSingleServiceMutation,
-  useGetAllServicesQuery
-} from "@/app/redux/api/services/serviceApi";
+import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
 import MyTable from "@/components/Table";
 import { Button, message } from "antd";
 import Link from "next/link";
@@ -12,28 +9,13 @@ import { MdRemoveRedEye } from "react-icons/md";
 import { PiTrash } from "react-icons/pi";
 
 const ServiceManagement = () => {
-  const { data: products, isLoading } =
-    useGetAllServicesQuery(undefined);
-  
-  const [deleteSingleService] = useDeleteSingleServiceMutation();
+  const { data: products, isLoading } = useGetAllServicesQuery(undefined);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  const handleServiceDelete = async (id: string) => {
-    const res = await deleteSingleService(id);
-    if (res) {
-      message.success("Service deleted successfully");
-    }
-  };
-
   const columns = [
-    {
-      title: "User Id",
-      dataIndex: "id",
-      sorter: true,
-    },
     {
       title: "Title",
       dataIndex: "title",
@@ -57,14 +39,6 @@ const ServiceManagement = () => {
                 <MdRemoveRedEye className="text-orange-500" />
               </Button>
             </Link>
-            <Button
-              className="ml-3"
-              type="primary"
-              danger
-              onClick={() => handleServiceDelete(data)}
-            >
-              <PiTrash />
-            </Button>
           </>
         );
       },

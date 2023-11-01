@@ -38,14 +38,6 @@ const BookingManagement = () => {
       sorter: true,
     },
     {
-      title: "Service Id",
-      dataIndex: "service",
-    },
-    {
-      title: "User Id",
-      dataIndex: "userId",
-    },
-    {
       title: "Status",
       dataIndex: "status",
     },
@@ -65,9 +57,7 @@ const BookingManagement = () => {
               type="primary"
               danger
               onClick={() => HandleReject(data)}
-            >
-              <MdOutlineCancel />
-            </Button>
+            ></Button>
           </>
         );
       },

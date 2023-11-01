@@ -1,7 +1,10 @@
 "use client";
 
 import Loading from "@/app/loading";
-import { useDeleteSingleBlogMutation, useGetAllBlogsQuery } from "@/app/redux/api/blogs/blogApi";
+import {
+  useDeleteSingleBlogMutation,
+  useGetAllBlogsQuery,
+} from "@/app/redux/api/blogs/blogApi";
 import MyTable from "@/components/Table";
 import { Button, message } from "antd";
 import Link from "next/link";
@@ -17,20 +20,15 @@ const ContentManagement = () => {
     return <Loading />;
   }
 
-  const handleRemove = async(id: string)=> {
+  const handleRemove = async (id: string) => {
     const res = await deleteSingleBlog(id);
 
     if (res) {
-      message.warning("blog deleted")
+      message.warning("blog deleted");
     }
-  }
+  };
 
   const columns = [
-    {
-      title: "Blog Id",
-      dataIndex: "id",
-      sorter: true,
-    },
     {
       title: "TItle",
       dataIndex: "title",
@@ -46,9 +44,14 @@ const ContentManagement = () => {
                 <MdRemoveRedEye className="text-white" />
               </button>
             </Link>
-              <Button type="primary" danger className="ml-3" onClick={() =>handleRemove(data)}>
-                <BiTrashAlt/>
-              </Button>
+            <Button
+              type="primary"
+              danger
+              className="ml-3"
+              onClick={() => handleRemove(data)}
+            >
+              <BiTrashAlt />
+            </Button>
           </>
         );
       },

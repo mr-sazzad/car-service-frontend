@@ -16,11 +16,6 @@ const Dashboard = () => {
 
   const columns = [
     {
-      title: "User Id",
-      dataIndex: "id",
-      sorter: true,
-    },
-    {
       title: "Name",
       dataIndex: "name",
     },

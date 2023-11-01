@@ -13,7 +13,8 @@ import { DatePicker, DatePickerProps, Modal, message } from "antd";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { ImCoinDollar } from "react-icons/im";
+
+import { PiCurrencyDollarSimpleBold } from "react-icons/pi";
 
 const ViewBooking = () => {
   const { id } = useParams();
@@ -119,7 +120,7 @@ const ViewBooking = () => {
         <div className="flex flex-row gap-1 items-center mb-5">
           <p>Price: </p>
           <p className="text-sm font-base flex items-center gap-1">
-            {service?.price} <ImCoinDollar />
+            {service?.price} <PiCurrencyDollarSimpleBold />
           </p>
         </div>
         <DatePicker onChange={onChange} className="w-full" />
@@ -141,7 +142,7 @@ const ViewBooking = () => {
                     Service Charge:{" "}
                     <div className="flex gap-1 items-center">
                       <span className="text-black">{service?.price}</span>
-                      <ImCoinDollar className="text-orange-500" />
+                      <PiCurrencyDollarSimpleBold className="text-orange-500" />
                     </div>
                   </p>
                 </div>

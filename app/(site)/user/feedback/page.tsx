@@ -1,9 +1,10 @@
 "use client";
 
+import { breakpointColumnsObj } from "@/app/constants/breakpoints";
 import Loading from "@/app/loading";
 import { useGetAllFeedbacksQuery } from "@/app/redux/api/feedback/feedbackApi";
 import Image from "next/image";
-import Masonry from 'react-masonry-css';
+import Masonry from "react-masonry-css";
 
 const Feedbacks = () => {
   const { data: feedbacks, isLoading } = useGetAllFeedbacksQuery(undefined);
@@ -23,11 +24,11 @@ const Feedbacks = () => {
           </h1>
         </div>
         <div className="flex justify-center">
-        <Masonry
-  breakpointCols={3}
-  className="my-masonry-grid"
-  columnClassName="my-masonry-grid_column">
-
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
             {feedbacks &&
               feedbacks.map((feedback: any) => (
                 <div key={feedback?.id} className="bg-gray-50 px-5 py-7">

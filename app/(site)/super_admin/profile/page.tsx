@@ -106,9 +106,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="bg-gray-100 flex-1 rounded-md p-5">
-            <div className="border border-gray-500 rounded-md">
-              <p className="text-center text-lg font-medium my-5">
+          <div className="bg-gray-200 flex-1 rounded-md p-5">
+            <div className="border border-gray-400 rounded-md">
+              <p className="text-center text-lg font-medium my-5 px-5">
                 Update Your Information
               </p>
               <form
@@ -116,8 +116,8 @@ const Profile = () => {
                 className="flex justify-center item-center mb-5"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="flex flex-row gap-5">
-                    <div className="flex flex-col gap-1">
+                  <div className="flex flex-col md:flex-row gap-5 w-full">
+                    <div className="flex flex-col gap-1 w-full">
                       <label className="font-medium ml-2 text-gray-500">
                         Name
                       </label>
@@ -125,12 +125,12 @@ const Profile = () => {
                         type="text"
                         defaultValue={currentUser?.name}
                         placeholder="Enter your name"
-                        className="p-2 outline-none border border-gray-500 rounded-md"
+                        className="p-2 outline-none border border-gray-300 rounded-md"
                         {...register("name")}
                       />
                     </div>
                     <div className="flex flex-col gap-1 w-full">
-                      <label className="font-medium ml-2 text-gray-500">
+                      <label className="font-medium ml-2 text-gray-500 w-full">
                         Gender
                       </label>
                       <select
@@ -154,23 +154,24 @@ const Profile = () => {
                         type="text"
                         placeholder="Enter your email"
                         defaultValue={currentUser?.email}
-                        className="p-2 outline-none border border-gray-500 rounded-md"
+                        className="p-2 outline-none border border-gray-300 rounded-md"
                         disabled
                       />
                     </div>
                   </div>
-                  <div className="flex flex-row gap-5 text-gray-500">
-                    <div className="flex flex-col gap-1">
+                  {/* w-full className */}
+                  <div className="flex flex-col md:flex-row gap-5 text-gray-500">
+                    <div className="flex flex-col gap-1 w-full">
                       <label className="font-medium ml-2">Contact No</label>
                       <input
                         type="text"
                         placeholder="Enter your contactNo"
                         defaultValue={currentUser?.contactNo}
-                        className="p-2 outline-none border border-gray-500 rounded-md"
+                        className="p-2 outline-none border border-gray-300 rounded-md"
                         {...register("contactNo")}
                       />
                     </div>
-                    <div className="flex flex-col gap-1 text-gray-500">
+                    <div className="flex flex-col gap-1 text-gray-500 w-full">
                       <label className="font-medium ml-2">Blood Group</label>
                       <select
                         className="select select-bordered w-full outline-none"
@@ -192,11 +193,11 @@ const Profile = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="flex flex-col gap-1 text-gray-500">
+                    <div className="flex flex-col gap-1 text-gray-300">
                       <label className="font-medium ml-2">Profile Image</label>
                       <input
                         type="file"
-                        className="file-input w-full outline-none border border-gray-500 rounded-md"
+                        className="file-input w-full outline-none border border-gray-300 rounded-md"
                         {...register("file")}
                       />
                     </div>

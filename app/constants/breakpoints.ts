@@ -15,9 +15,8 @@ export const breakpointColumns = {
 
 export const blogsBreadPoints = {
   default: 3,
-  1300: 3,
-  950: 2,
-  450: 1,
+  1050: 2,
+  500: 1,
 };
 
 export const getStatusStyle = (status: string) => {

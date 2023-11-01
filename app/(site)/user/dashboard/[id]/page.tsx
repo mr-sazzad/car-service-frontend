@@ -14,6 +14,7 @@ import { useState } from "react";
 
 import { GiShatteredHeart } from "react-icons/gi";
 import { ImCoinDollar } from "react-icons/im";
+import { RiSecurePaymentFill } from "react-icons/ri";
 
 const ViewPage = () => {
   const { id } = useParams();
@@ -117,7 +118,7 @@ const ViewPage = () => {
           <div className="text-center font-bold mb-5 text-2xl text-gray-600">
             {service?.title}
           </div>
-          <div className="flex flex-col gap-10 lg:gap-0 lg:flex-row justify-between">
+          <div className="flex flex-col gap-10 lg:gap-5 lg:flex-row justify-between">
             <div className="flex-1">
               <p className="text-center text-xl font-semibold text-gray-500 mb-5">
                 Product Details
@@ -191,15 +192,9 @@ const ViewPage = () => {
                           Attention
                         </p>
                         <p className="">
-                          You have to change service status for showing booking
-                          options
-                        </p>
-                        <p className="">
-                          If you want to do that you have to add this product
-                          another time
-                        </p>
-                        <p className="">
-                          Because the service status is currently{" "}
+                          Please note that the current service status is
+                          impacting the availability of booking options. To
+                          proceed, consider adding this product once more.{" "}
                           <span className="text-rose-500 font-semibold">
                             &quot;cancelled&quot;{" "}
                           </span>
@@ -208,6 +203,19 @@ const ViewPage = () => {
                     )}
                   </div>
                 </div>
+              </div>
+              <div className="flex flex-col gap-3 mt-5">
+                {cart?.status === "completed" && (
+                  <div>
+                    <p className="text-md font-semibold text-gray-500 mb-3 flex flex-row gap-2 items-center">
+                      <RiSecurePaymentFill className="text-green-500" /> Payment
+                      Disclaimer
+                    </p>
+                    <p className="text-sm">
+                      Payment is due upon service consumption.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

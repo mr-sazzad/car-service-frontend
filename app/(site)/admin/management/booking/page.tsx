@@ -1,35 +1,18 @@
 "use client";
 
 import Loading from "@/app/loading";
-import {
-  useGetAllPendingCartQuery,
-  useUpdateSingleCartMutation,
-} from "@/app/redux/api/cart/cartApi";
+import { useGetAllPendingCartQuery } from "@/app/redux/api/cart/cartApi";
 import MyTable from "@/components/Table";
 import { Button, message } from "antd";
 import Link from "next/link";
-import { MdOutlineCancel, MdRemoveRedEye } from "react-icons/md";
+import { MdRemoveRedEye } from "react-icons/md";
 
 const BookingManagement = () => {
   const { data: services, isLoading } = useGetAllPendingCartQuery(undefined);
 
-  // Update Cart
-  const [updateSingleCart] = useUpdateSingleCartMutation();
-
   if (isLoading) {
     <Loading />;
   }
-
-  // handle Reject
-  const HandleReject = async (id: any) => {
-    const data = {
-      status: "cancelled",
-    };
-
-    const res = await updateSingleCart({ id, ...data });
-
-    res && message.success("status updated successfully");
-  };
 
   const columns = [
     {
@@ -52,12 +35,6 @@ const BookingManagement = () => {
                 <MdRemoveRedEye className="text-orange-500" />
               </Button>
             </Link>
-            <Button
-              className="ml-3"
-              type="primary"
-              danger
-              onClick={() => HandleReject(data)}
-            ></Button>
           </>
         );
       },

@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 
 import { GiShatteredHeart } from "react-icons/gi";
-import { ImCoinDollar } from "react-icons/im";
+import { PiCurrencyDollarSimpleBold } from "react-icons/pi";
 import { RiSecurePaymentFill } from "react-icons/ri";
 
 const ViewPage = () => {
@@ -63,8 +63,6 @@ const ViewPage = () => {
     cart?.service
   );
 
-  // console.log(service, "SERVICE");
-
   if (cartLoading || serviceLoading) {
     return <Loading />;
   }
@@ -100,14 +98,14 @@ const ViewPage = () => {
           </div>
         ) : (
           <div className="flex flex-row gap-1 items-center">
-            <p className="text-green-500 text-sm font-base">Confirm-Date:</p>
+            <p className="text-sm font-base">Confirm-Date:</p>
             <p className="text-sm font-base">{cart?.confirmedDate}</p>
           </div>
         )}
         <div className="flex flex-row gap-1 items-center mb-5">
           <p>Price: </p>
           <p className="text-sm font-base flex items-center gap-1">
-            {service?.price} <ImCoinDollar />
+            {service?.price} <PiCurrencyDollarSimpleBold />
           </p>
         </div>
         <DatePicker onChange={onChange} className="w-full" />
@@ -126,7 +124,8 @@ const ViewPage = () => {
               <div className="flex flex-row gap-1 items-center mb-2">
                 <p>Price: </p>
                 <p className="text-sm font-base flex items-center gap-1">
-                  {service?.price} <ImCoinDollar className="text-orange-500" />
+                  {service?.price}{" "}
+                  <PiCurrencyDollarSimpleBold className="text-orange-500" />
                 </p>
               </div>
               <div className="flex flex-row gap-1 items-center mb-2">
@@ -169,26 +168,82 @@ const ViewPage = () => {
                 <div className="mt-5 flex flex-row gap-3">
                   {cart?.status !== "cancelled" &&
                     cart?.status !== "completed" && (
-                      <Button onClick={showModal}>Book</Button>
+                      <button
+                        onClick={showModal}
+                        className=" 
+                          w-[70px] 
+                          border 
+                          border-gray-700 
+                          text-gray-700 
+                          hover:text-white 
+                          hover:bg-gray-700 
+                          transition-all 
+                          duration-300
+                          rounded-[4px]
+                        "
+                      >
+                        Book
+                      </button>
                     )}
 
                   {cart?.status !== "cancelled" && (
-                    <Button
+                    <button
                       onClick={() => handleServiceCancel(cart?.id)}
-                      danger
+                      className="
+                        w-[70px] 
+                        border 
+                        border-rose-500 
+                        text-rose-500 
+                        hover:text-white 
+                        hover:bg-rose-500 
+                        transition-all 
+                        duration-300
+                        rounded-[4px]
+                      "
                     >
                       Cancel
-                    </Button>
+                    </button>
                   )}
                   {cart?.status === "completed" && (
-                    <Button>
+                    <button
+                      className="
+                        text-gray-700 
+                        w-[70px] rounded-md 
+                        border 
+                        border-gray-700 
+                        hover:bg-gray-700 
+                        hover:text-white 
+                        transition-all 
+                        duration-300
+                      "
+                    >
                       <Link href={`/review/${id}`}>Review</Link>
-                    </Button>
+                    </button>
                   )}
                   <div className="flex flex-col gap-3">
                     {cart?.status === "cancelled" && (
-                      <div className="text-sm font-medium px-3 py-4 text-gray-700 rounded-md border border-gray-400">
-                        <p className="text-md font-semibold text-gray-500 mb-3 flex flex-row gap-2 items-center">
+                      <div
+                        className="
+                          text-sm 
+                          font-medium 
+                          px-3 
+                          py-4 
+                          text-gray-700 
+                          rounded-md 
+                          border 
+                          border-gray-400
+                        "
+                      >
+                        <p
+                          className="
+                            text-md 
+                            font-semibold 
+                            text-gray-500 
+                            mb-3 flex flex-row 
+                            gap-2 
+                            items-center
+                          "
+                        >
                           <GiShatteredHeart className="text-rose-600" />{" "}
                           Attention
                         </p>
@@ -205,10 +260,20 @@ const ViewPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 mt-5">
+              <div className="flex justify-center mt-10">
                 {cart?.status === "completed" && (
-                  <div>
-                    <p className="text-md font-semibold text-gray-500 mb-3 flex flex-row gap-2 items-center">
+                  <div className="">
+                    <p
+                      className="
+                        text-md 
+                        font-semibold 
+                        text-gray-500 
+                        mb-3 flex 
+                        flex-row 
+                        gap-2 
+                        items-center
+                      "
+                    >
                       <RiSecurePaymentFill className="text-green-500" /> Payment
                       Disclaimer
                     </p>

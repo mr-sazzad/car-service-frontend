@@ -1,5 +1,5 @@
 export const breakpointColumnsObj = {
-  default: 4,
+  default: 3,
   1400: 3,
   1000: 2,
   500: 1,

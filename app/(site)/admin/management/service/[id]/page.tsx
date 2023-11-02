@@ -66,9 +66,9 @@ const ServiceManagement = () => {
               </p>
               <p className="font-medium text-base text-gray-500 flex gap-2">
                 Service Charge:{" "}
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-[1px] items-center">
                   <span className="text-black">{service?.price}</span>
-                  <PiCurrencyDollarSimpleBold className="text-orange-500" />
+                  <PiCurrencyDollarSimpleBold />
                 </div>
               </p>
             </div>
@@ -77,24 +77,22 @@ const ServiceManagement = () => {
                 Description: <span>{service?.description}</span>
               </p>
             </div>
-            <div className="flex flex-col gap-2">
-              <p className="mb-2 text-2xl font-semibold">Danger Zone</p>
-              <div className="p-5 bg-gray-300 rounded-md">
-                <div className="p-3 bg-[#1F1315] border border-[#591A1A]">
-                  <div>
-                    <p className="text-sm mb-4 flex gap-2">
-                      <PiWarningOctagonLight className="text-[#591A1A] text-lg" />{" "}
-                      If you wish to proceed with the deletion of this service,
-                      please feel free to do so now. Your prompt action will
-                      ensure the seamless removal of the service from the system
-                    </p>
-                    <button
-                      onClick={() => handleDelete(service?.id)}
-                      className="px-3 py-1 border-[#591A1A] bg-transparent rounded-md hover:bg-[#E5484D] transition text-sm"
-                    >
-                      Delete
-                    </button>
-                  </div>
+            <div className="flex flex-col gap-2 mt-2">
+              <p className="text-xl font-semibold text-gray-800">Danger Zone</p>
+              <div className="p-3 border rounded-md">
+                <div>
+                  <p className="text-sm mb-4 flex gap-2">
+                    <PiWarningOctagonLight className="text-red-600 text-3xl" />{" "}
+                    If you wish to proceed with the deletion of this service,
+                    please feel free to do so now. Your prompt action will
+                    ensure the seamless removal of the service from the system
+                  </p>
+                  <button
+                    onClick={() => handleDelete(service?.id)}
+                    className="px-3 py-1 border border-red-600 bg-transparent rounded-md hover:bg-red-600 hover:text-white transition duration-300 ease-in-out text-sm"
+                  >
+                    Delete Service
+                  </button>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { tagTypesList } from "./tagTypes";
 
 export const getBaseUrl = (): string => {
-  return "https://car-server-r2xmo7vpf-mr-sazzad.vercel.app/api/v1";
+  return "https://car-service-d6fgsfta5-mr-sazzad.vercel.app/api/v1";
 };
 
 export const baseApi = createApi({

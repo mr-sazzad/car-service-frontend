@@ -13,8 +13,6 @@ const Feedbacks = () => {
     return <Loading />;
   }
 
-  console.log(feedbacks, "feedbacks");
-
   return (
     <div className="container mx-auto my-5">
       <div className="mx-4 md:mx-8 lg:mx-10">

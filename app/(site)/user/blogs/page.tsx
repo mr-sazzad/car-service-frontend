@@ -14,8 +14,6 @@ const Blogs = () => {
     return <Loading />;
   }
 
-  console.log(blogs, "All Blogs");
-
   return (
     <div className="container mx-auto my-5">
       <div className="mx-4 md:mx-8 lg:mx-10">
@@ -31,7 +29,9 @@ const Blogs = () => {
             columnClassName="my-masonry-grid_column"
           >
             {blogs?.map((blog: IBlog) => (
-              <BlogCard key={blog.id} data={blog} />
+              <div key={blog.id}>
+                <BlogCard data={blog} />
+              </div>
             ))}
           </Masonry>
         </div>

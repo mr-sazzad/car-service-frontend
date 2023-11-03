@@ -24,7 +24,6 @@ const Feedback = () => {
     const result = await giveFeedback(requestedData);
 
     if (result) {
-      console.log(data);
       message.success("Feedback added!");
       reset();
     }

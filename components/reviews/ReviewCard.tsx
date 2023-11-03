@@ -6,7 +6,6 @@ import { convertToStars } from "@/app/utils/convertToStar";
 import Image from "next/image";
 
 const PersonCard = ({ rev }: { rev: any }) => {
-  console.log(rev, "rev");
   const { data: user, isLoading } = useGetSingleUserQuery(rev?.userId);
 
   if (isLoading) {

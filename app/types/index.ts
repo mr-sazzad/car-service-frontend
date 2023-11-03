@@ -36,9 +36,10 @@ export type IUpdateCart = {
 };
 
 export type IBlog = {
+  id: string;
+  image: string;
+  title: string;
   content: string;
   createdAt: string;
   updatedAt: string;
-  title: string;
-  id: string;
 };

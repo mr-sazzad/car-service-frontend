@@ -2,8 +2,8 @@
 
 import Loading from "@/app/loading";
 import {
-    useGetSingleUserQuery,
-    useUpdateUserMutation,
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
 } from "@/app/redux/api/userApi";
 import { hideEmail } from "@/app/utils/emailHide";
 import { Switch } from "antd";
@@ -65,8 +65,6 @@ const Profile = () => {
       console.error("Error occurred:", error);
     }
   };
-
-  // console.log(isBanned)
 
   const handleBannedUser = async (checked: boolean) => {
     const updatedData = {

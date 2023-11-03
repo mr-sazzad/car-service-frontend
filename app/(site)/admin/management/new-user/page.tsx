@@ -12,22 +12,23 @@ const AddNewUser = () => {
 
   const [userSignUp] = useUserSignUpMutation();
 
-  const imageHostingUrl = "https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675";
+  const imageHostingUrl =
+    "https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675";
 
   const onSubmit = async (data: any) => {
     try {
       const formData = new FormData();
       formData.append("image", data.file[0]);
-  
+
       let profileImage = "";
-  
+
       const response = await fetch(imageHostingUrl as string, {
         method: "POST",
         body: formData,
       });
       const responseData = await response.json();
       profileImage = responseData?.data?.display_url;
-  
+
       const createUserData = {
         name: data.name,
         email: data.email,
@@ -37,25 +38,21 @@ const AddNewUser = () => {
         bloodGroup: data.bloodGroup,
         profileImage: profileImage,
       };
-  
+
       const result: any = await userSignUp(createUserData);
-      
-      console.log(result, "result")
 
       if (result?.data?.success === false) {
         message.error("something went wrong");
         reset();
-      }
-      else {
+      } else {
         message.success("User signed up successfully");
-        router.push('/admin/management/user');
+        router.push("/admin/management/user");
         reset();
       }
     } catch (err: any) {
       message.error("something went wrong");
     }
   };
-  
 
   return (
     <div className="container mx-auto mt-5">

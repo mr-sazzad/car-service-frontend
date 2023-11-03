@@ -66,7 +66,21 @@ const ContentManagement = () => {
             Want To Add New Blog?{" "}
           </p>
           <Link href="/admin/management/new-blog">
-            <Button>Add New Blog</Button>
+            <button
+              className="
+                border 
+                border-gray-300 
+                hover:text-white 
+                hover:bg-gray-700 
+                transition-all 
+                duration-300
+                rounded-[4px]
+                px-2
+                py-1
+              "
+            >
+              Add New Blog
+            </button>
           </Link>
         </div>
         <MyTable loading={isLoading} columns={columns} dataSource={blogs} />

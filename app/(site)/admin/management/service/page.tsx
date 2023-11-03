@@ -51,7 +51,21 @@ const ServiceManagement = () => {
         <div className="flex justify-between items-center mb-5">
           <p>Want to add service</p>
           <Link href="/admin/management/add-new">
-            <Button>Add New Service</Button>
+          <button
+              className="
+                border 
+                border-gray-300 
+                hover:text-white 
+                hover:bg-gray-700 
+                transition-all 
+                duration-300
+                rounded-[4px]
+                px-2
+                py-1
+              "
+            >
+              Add New Service
+            </button>
           </Link>
         </div>
         <MyTable loading={isLoading} columns={columns} dataSource={products} />

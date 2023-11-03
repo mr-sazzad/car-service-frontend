@@ -12,22 +12,23 @@ const NewAdmin = () => {
 
   const [createAdmin] = useCreateAdminMutation();
 
-  const imageHostingUrl = "https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675";
+  const imageHostingUrl =
+    "https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675";
 
   const onSubmit = async (data: any) => {
     try {
       const formData = new FormData();
       formData.append("image", data.file[0]);
-  
+
       let profileImage = "";
-  
+
       const response = await fetch(imageHostingUrl as string, {
         method: "POST",
         body: formData,
       });
       const responseData = await response.json();
       profileImage = responseData?.data?.display_url;
-  
+
       const createAdminData = {
         name: data.name,
         email: data.email,
@@ -36,27 +37,23 @@ const NewAdmin = () => {
         contactNo: data.contactNo,
         bloodGroup: data.bloodGroup,
         profileImage: profileImage,
-        role: 'admin'
+        role: "admin",
       };
-  
+
       const result: any = await createAdmin(createAdminData);
-      
-      console.log(result, "result")
 
       if (result?.data?.success === false) {
         message.error("something went wrong");
         reset();
-      }
-      else {
+      } else {
         message.success("admin created");
-        router.push('/super_admin/management/admin');
+        router.push("/super_admin/management/admin");
         reset();
       }
     } catch (err: any) {
       message.error("something went wrong");
     }
   };
-  
 
   return (
     <div className="container mx-auto mt-5">

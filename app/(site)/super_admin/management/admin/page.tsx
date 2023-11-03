@@ -14,8 +14,6 @@ const Dashboard = () => {
     return <Loading />;
   }
 
-  console.log(admins, "admins");
-
   const columns = [
     {
       title: "User Id",
@@ -59,7 +57,21 @@ const Dashboard = () => {
             Is Necessary To Add New Admin?
           </p>
           <Link href="/super_admin/management/new-admin">
-            <Button>Add New Admin</Button>
+            <button
+              className="
+                border 
+                border-gray-300 
+                hover:text-white 
+                hover:bg-gray-700 
+                transition-all 
+                duration-300
+                rounded-[4px]
+                px-2
+                py-1
+              "
+            >
+              Add New Admin
+            </button>
           </Link>
         </div>
         <MyTable loading={isLoading} columns={columns} dataSource={admins} />

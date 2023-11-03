@@ -66,8 +66,6 @@ const Profile = () => {
     }
   };
 
-  // console.log(isBanned)
-
   const handleBannedUser = async (checked: boolean) => {
     const updatedData = {
       isBanned: checked,

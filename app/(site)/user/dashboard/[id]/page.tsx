@@ -22,8 +22,6 @@ const ViewPage = () => {
   const [updateSingleCart] = useUpdateSingleCartMutation();
   const { data: cart, isLoading: cartLoading } = useGetSingleFromCartQuery(id);
 
-  // console.log(cart, "CART");
-
   const [confirmedTime, setConfirmedTime] = useState(
     new Date().toLocaleString()
   );
@@ -171,7 +169,8 @@ const ViewPage = () => {
                       <button
                         onClick={showModal}
                         className=" 
-                          w-[70px] 
+                          w-[75px] 
+                          py-1
                           border 
                           border-gray-700 
                           text-gray-700 
@@ -190,7 +189,8 @@ const ViewPage = () => {
                     <button
                       onClick={() => handleServiceCancel(cart?.id)}
                       className="
-                        w-[70px] 
+                        w-[75px] 
+                        py-1
                         border 
                         border-rose-500 
                         text-rose-500 
@@ -208,7 +208,9 @@ const ViewPage = () => {
                     <button
                       className="
                         text-gray-700 
-                        w-[70px] rounded-md 
+                        w-[75px]
+                        py-1
+                        rounded-[4px] 
                         border 
                         border-gray-700 
                         hover:bg-gray-700 

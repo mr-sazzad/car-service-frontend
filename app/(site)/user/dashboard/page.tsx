@@ -8,17 +8,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdRemoveRedEye } from "react-icons/md";
 
+
 const Dashboard = () => {
   const { data: cartData, isLoading: isCartLoading } =
     useGetAllFromCartQuery(undefined);
   const { data: services, isLoading: isServicesLoading } =
     useGetAllAvailableServicesQuery(undefined);
 
-  const [cartProducts, setCartProducts] = useState([]);
+    const [cartProducts, setCartProducts] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!isCartLoading && !isServicesLoading && cartData && services) {
-      const updatedCartProducts = cartData?.map((item: any) => {
+    if (!isCartLoading && !isServicesLoading && Array.isArray(cartData) && services) {
+      const updatedCartProducts = cartData.map((item: any) => {
         const service = services.find(
           (product: any) => product.id === item.service
         );
@@ -27,6 +28,7 @@ const Dashboard = () => {
       setCartProducts(updatedCartProducts);
     }
   }, [isCartLoading, isServicesLoading, cartData, services]);
+  
 
   if (isCartLoading || isServicesLoading) {
     return <Loading />;
@@ -72,11 +74,11 @@ const Dashboard = () => {
             # Your Orders
           </h1>
         </div>
-        <MyTable
-          loading={isCartLoading}
-          columns={columns}
-          dataSource={cartProducts}
-        />
+          <MyTable
+            loading={isCartLoading}
+            columns={columns}
+            dataSource={cartProducts}
+          />
       </div>
     </div>
   );

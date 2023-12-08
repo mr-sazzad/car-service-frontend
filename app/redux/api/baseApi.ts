@@ -4,6 +4,7 @@ import { tagTypesList } from "./tagTypes";
 
 export const getBaseUrl = (): string => {
   return "https://car-backend-three.vercel.app/api/v1";
+  // return "http://localhost:5001/api/v1";
 };
 
 export const baseApi = createApi({

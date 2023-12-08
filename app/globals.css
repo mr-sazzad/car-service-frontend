@@ -73,6 +73,17 @@ select option:hover {
   border-radius: 5px !important;
 }
 
+.my-masonry-grid_blog {
+  padding-left: 10px;
+  background-clip: padding-box;
+}
+
+
+.my-masonry-grid_blog > div {
+  margin-bottom: 10px;
+  border-radius: 5px !important;
+}
+
 .event-bg {
   background-image: url("/assets/car-workshop.jpg");
   width: 100%;

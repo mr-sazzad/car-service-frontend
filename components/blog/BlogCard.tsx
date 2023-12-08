@@ -6,7 +6,7 @@ const BlogCard = ({ data }: { data: IBlog }) => {
   return (
     <Link
       href={`/user/blogs/${data.id}`}
-      className="flex flex-col gap-2 w-full border border-gray-400 p-3 rounded-md"
+      className="flex flex-col gap-2 min-w-[230px] w-full border border-gray-300 p-3 rounded-md"
     >
       <div className="relative w-full h-[160px]">
         <Image src={data.image} alt="blog-image" fill objectFit="cover" />

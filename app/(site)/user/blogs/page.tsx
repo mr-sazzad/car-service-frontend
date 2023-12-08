@@ -1,6 +1,6 @@
 "use client";
 
-import { blogsBreadPoints } from "@/app/constants/breakpoints";
+import { blogsBreakPoints } from "@/app/constants/breakpoints";
 import Loading from "@/app/loading";
 import { useGetAllBlogsQuery } from "@/app/redux/api/blogs/blogApi";
 import { IBlog } from "@/app/types";
@@ -24,9 +24,9 @@ const Blogs = () => {
         </div>
         <div className="flex justify-center">
           <Masonry
-            breakpointCols={blogsBreadPoints}
+            breakpointCols={blogsBreakPoints}
             className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
+            columnClassName="my-masonry-grid_blog"
           >
             {blogs?.map((blog: IBlog) => (
               <div key={blog.id}>

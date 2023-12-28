@@ -105,7 +105,7 @@ const NewBlog = () => {
                 type="submit"
                 className="p-2 bg-orange-500 hover:bg-orange-400 transition w-full text-white font-medium rounded-md"
               >
-                Create New Blog
+                {isLoading ? "Loading ..." : "Create New Blog"}
               </button>
             </form>
           </div>

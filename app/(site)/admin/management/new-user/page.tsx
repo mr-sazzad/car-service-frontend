@@ -10,7 +10,7 @@ const AddNewUser = () => {
   const { handleSubmit, register, reset } = useForm();
   const router = useRouter();
 
-  const [userSignUp] = useUserSignUpMutation();
+  const [userSignUp, { isLoading }] = useUserSignUpMutation();
 
   const imageHostingUrl =
     "https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675";
@@ -153,7 +153,7 @@ const AddNewUser = () => {
                 type="submit"
                 className="bg-orange-500 py-1 px-2 rounded-md text-white hover:bg-orange-600 transition h-[3rem] mt-5"
               >
-                Add New User
+                {isLoading ? "Loading ..." : "Add New User"}
               </button>
             </form>
           </div>

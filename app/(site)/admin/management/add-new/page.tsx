@@ -13,7 +13,7 @@ const AddNewService = () => {
 
   const router = useRouter();
 
-  const [createNewService] = useCreateNewServiceMutation();
+  const [createNewService, { isLoading }] = useCreateNewServiceMutation();
 
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=9e675c9c7fab0ae39d3d5f4203858675`;
 
@@ -131,7 +131,7 @@ const AddNewService = () => {
                 type="submit"
                 className="p-2 bg-orange-500 hover:bg-orange-400 transition w-full text-white font-medium rounded-md"
               >
-                Add New Service
+                {isLoading ? "Loading ... " : "Add New Service"}
               </button>
             </form>
           </div>

@@ -3,7 +3,6 @@
 import Loading from "@/app/loading";
 import { useGetAllServicesQuery } from "@/app/redux/api/services/serviceApi";
 import MyTable from "@/components/Table";
-import { Button, message } from "antd";
 import Link from "next/link";
 import { MdRemoveRedEye } from "react-icons/md";
 import { PiTrash } from "react-icons/pi";
@@ -35,9 +34,9 @@ const ServiceManagement = () => {
         return (
           <>
             <Link href={`/admin/management/service/${data}`}>
-              <Button className="border border-orange-500 hover:border-orange-600">
-                <MdRemoveRedEye className="text-orange-500" />
-              </Button>
+              <button className="border border-orange-500 hover:bg-orange-600 hover:border-orange-600 transition-all duration-300 rounded px-3 py-2">
+                <MdRemoveRedEye className="text-orange-500 hover:text-white transition duration-300" />
+              </button>
             </Link>
           </>
         );
@@ -51,7 +50,7 @@ const ServiceManagement = () => {
         <div className="flex justify-between items-center mb-5">
           <p>Want to add service</p>
           <Link href="/admin/management/add-new">
-          <button
+            <button
               className="
                 border 
                 border-gray-300 

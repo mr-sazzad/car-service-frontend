@@ -40,8 +40,8 @@ const ContentManagement = () => {
         return (
           <>
             <Link href={`/admin/management/content/${data}`}>
-              <button className="border border-orange-500 hover:bg-orange-600 hover:border-orange-600 transition-all duration-300 rounded px-3 py-2">
-                <MdRemoveRedEye className="text-orange-500 hover:text-white transition duration-300" />
+              <button className="border border-orange-500 hover:bg-orange-600 hover:border-orange-600 transition-all duration-300 rounded px-4 py-2 group">
+                <MdRemoveRedEye className="text-orange-500 group-hover:text-white transition duration-300" />
               </button>
             </Link>
             <Button

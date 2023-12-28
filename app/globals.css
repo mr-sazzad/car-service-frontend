@@ -92,12 +92,9 @@ select option:hover {
   backdrop-filter: blur(100px);
   background-size: cover;
 }
-
-.ant-btn 
-.ant-btn-default {
-  background-color: rgb(234 88 12);
-}
 .ant-btn:hover, 
 .ant-btn-default:hover {
-  background-color: rgb(243, 128, 66);
+  background-color: rgb(234 88 12);
+  border-color: rgb(234 88 12);
+  color: #ffffff;
 }
